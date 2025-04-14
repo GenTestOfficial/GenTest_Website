@@ -819,42 +819,20 @@ describe('User Database Operations', () => {
                 <p className="text-lg text-white/80">
                   Join thousands of developers who are shipping better code faster with AI-powered testing.
                 </p>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                  className="pt-6 flex flex-col sm:flex-row justify-center gap-4"
-                >
-                  <Link href="/try">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                      <Button 
-                        size="lg" 
-                        className="bg-gradient-to-r from-violet-500 to-teal-400 hover:from-violet-600 hover:to-teal-500 text-lg px-8 py-6 text-white shadow-2xl hover:shadow-[0_0_30px_rgba(167,139,250,0.5)] transition-all duration-200 w-full sm:w-auto"
-                      >
-                        Try GenTest Free
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
-                    </motion.div>
-                  </Link>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                    <Button 
-                      size="lg" 
-                      variant="outline" 
-                      className="text-lg px-8 py-6 border-2 border-white/20 hover:bg-white/10 text-white w-full sm:w-auto"
-                    >
-                      View Pricing
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/try" className="w-full sm:w-auto">
+                    <Button size="lg" className="w-full">
+                      Try GenTest
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                  </motion.div>
-                </motion.div>
+                  </Link>
+                  <Link href="/pricing" className="w-full sm:w-auto">
+                    <Button size="lg" variant="outline" className="w-full">
+                      View Pricing
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
               </motion.div>
               
               <motion.div

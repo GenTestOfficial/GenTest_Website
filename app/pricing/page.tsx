@@ -9,13 +9,12 @@ import { motion, useAnimate, stagger } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { useAuth, useSignIn } from '@clerk/nextjs';
+import { useAuth } from '@clerk/nextjs';
 
 export default function PricingPage() {
   const [scope, animate] = useAnimate();
   const router = useRouter();
   const { isSignedIn } = useAuth();
-  const { signIn } = useSignIn();
   const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
@@ -29,10 +28,7 @@ export default function PricingPage() {
   const handleUpgrade = async (plan: string) => {
     try {
       if (!isSignedIn) {
-        await signIn?.create({
-          strategy: "oauth_google",
-          redirectUrl: "/pricing",
-        });
+        router.push('/sign-in');
         return;
       }
 
@@ -58,6 +54,29 @@ export default function PricingPage() {
       toast.error('Failed to start checkout process');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleSubscribe = async (priceId: string) => {
+    try {
+      if (!isSignedIn) {
+        router.push('/sign-in?redirect_url=/pricing');
+        return;
+      }
+
+      const response = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priceId }),
+      });
+
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Failed to initiate checkout. Please try again.');
     }
   };
 
