@@ -9,7 +9,7 @@ import { motion, useAnimate, stagger } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, SignInButton } from '@clerk/nextjs';
 
 export default function PricingPage() {
   const [scope, animate] = useAnimate();
@@ -28,7 +28,6 @@ export default function PricingPage() {
   const handleUpgrade = async (plan: string) => {
     try {
       if (!isSignedIn) {
-        router.push('/sign-in');
         return;
       }
 
@@ -270,13 +269,23 @@ export default function PricingPage() {
               </ul>
             </CardContent>
             <CardFooter className="mt-auto">
-              <Button 
-                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 border-0"
-                onClick={() => handleUpgrade('PRO')}
-                disabled={isLoading}
-              >
-                {isLoading ? 'Processing...' : 'Upgrade to Pro'}
-              </Button>
+              {isSignedIn ? (
+                <Button 
+                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 border-0"
+                  onClick={() => handleUpgrade('PRO')}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Processing...' : 'Upgrade to Pro'}
+                </Button>
+              ) : (
+                <SignInButton mode="modal">
+                  <Button 
+                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 border-0"
+                  >
+                    Sign In to Upgrade
+                  </Button>
+                </SignInButton>
+              )}
             </CardFooter>
           </Card>
         </motion.div>
