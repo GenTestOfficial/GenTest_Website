@@ -57,29 +57,6 @@ export default function PricingPage() {
     }
   };
 
-  const handleSubscribe = async (priceId: string) => {
-    try {
-      if (!isSignedIn) {
-        router.push('/sign-in?redirect_url=/pricing');
-        return;
-      }
-
-      const response = await fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ priceId }),
-      });
-
-      const { url } = await response.json();
-      window.location.href = url;
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('Failed to initiate checkout. Please try again.');
-    }
-  };
-
   return (
     <div className="container py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 to-teal-900/5 z-0" />
