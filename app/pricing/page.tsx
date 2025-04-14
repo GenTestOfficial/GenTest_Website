@@ -9,12 +9,13 @@ import { motion, useAnimate, stagger } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, useSignIn } from '@clerk/nextjs';
 
 export default function PricingPage() {
   const [scope, animate] = useAnimate();
   const router = useRouter();
   const { isSignedIn } = useAuth();
+  const { signIn } = useSignIn();
   const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
@@ -28,7 +29,10 @@ export default function PricingPage() {
   const handleUpgrade = async (plan: string) => {
     try {
       if (!isSignedIn) {
-        router.push('/sign-in');
+        await signIn?.create({
+          strategy: "oauth_google",
+          redirectUrl: "/pricing",
+        });
         return;
       }
 
