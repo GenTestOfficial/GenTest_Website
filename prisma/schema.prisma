@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id
+  tier            String    @default("free")
+  token_usage     Int       @default(0)
+  token_limit     Int       @default(5000)
+  last_updated    DateTime  @default(now())
+  subscription    Json?     // Stores subscription data as JSON
+  testHistory     TestHistory[]
+}
+
+model TestHistory {
+  id          String   @id @default(cuid())
+  userId      String
+  code        String
+  testCode    String
+  framework   String
+  language    String
+  tokensUsed  Int
+  timestamp   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}
