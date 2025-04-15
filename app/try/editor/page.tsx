@@ -48,12 +48,12 @@ const AI_MODELS = {
       name: "GPT-4",
       description: "Most advanced model for complex test scenarios",
     },
-    "claude-3-opus": {
-      name: "Claude 3 Opus",
+    "claude-3-7-sonnet-20250219": {
+      name: "Claude 3.7 Sonnet",
       description: "Best for large codebases and complex test cases",
     },
-    "claude-3-sonnet": {
-      name: "Claude 3 Sonnet",
+    "claude-3-5-haiku-20241022": {
+      name: "Claude 3.5 Haiku",
       description: "Balanced performance for most test generation needs",
     },
   },
@@ -180,6 +180,12 @@ const EditorPage = () => {
       return;
     }
 
+    // Check if user is trying to use a pro model without pro access
+    if (userTier === 'free' && selectedModel in AI_MODELS.pro) {
+      toast.error("This model is only available for Pro users. Please upgrade to access GPT-4 and Claude models.");
+      return;
+    }
+
     setIsGenerating(true);
     setTestCode("");
     setAnalysisProgress(0);
@@ -255,12 +261,12 @@ const EditorPage = () => {
     ? { ...AI_MODELS.free, ...AI_MODELS.pro }
     : AI_MODELS.free;
 
-  const modelOptions = [
-    { value: 'gpt-3.5-turbo', label: 'GPT-3.5 Turbo' },
-    { value: 'gpt-4', label: 'GPT-4' },
-    { value: 'claude-3-7-sonnet-20250219', label: 'Claude 3.7 Sonnet' },
-    { value: 'claude-3-5-haiku-20241022', label: 'Claude 3.5 Haiku' },
-  ];
+  const modelOptions = Object.entries(availableModels).map(([value, model]) => ({
+    value,
+    label: model.name,
+    description: model.description,
+    isPro: value in AI_MODELS.pro
+  }));
 
   return (
     <div className="pt-20 min-h-screen relative overflow-hidden">
@@ -583,9 +589,16 @@ npx ${selectedFramework}`}
                       {modelOptions.map((option) => (
                         <SelectItem key={option.value} value={option.value} className="text-base py-2">
                           <div className="flex flex-col">
-                            <span className="font-medium">{option.label}</span>
+                            <div className="flex items-center gap-2">
+                              <span className="font-medium">{option.label}</span>
+                              {option.isPro && (
+                                <Badge variant="secondary" className="bg-purple-500/10 text-purple-500 text-xs">
+                                  Pro
+                                </Badge>
+                              )}
+                            </div>
                             <span className="text-sm text-muted-foreground">
-                              {option.value.includes('gpt') ? 'OpenAI' : 'Anthropic'}
+                              {option.description}
                             </span>
                           </div>
                         </SelectItem>
