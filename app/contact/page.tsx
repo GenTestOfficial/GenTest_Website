@@ -17,7 +17,7 @@ export default function ContactPage() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
-    subject: "waitlist",
+    subject: "general",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
