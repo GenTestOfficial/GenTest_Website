@@ -17,7 +17,7 @@ export default function ContactPage() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
-    subject: "general",
+    subject: "waitlist",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -78,16 +78,35 @@ export default function ContactPage() {
     }
 
     try {
-      // Here you would typically send the form data to your backend
-      // For now, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 'gentest.official@gmail.com',
+          subject: `[${formState.subject.toUpperCase()}] New message from ${formState.name}`,
+          text: `
+Name: ${formState.name}
+Email: ${formState.email}
+Subject: ${formState.subject}
+
+Message:
+${formState.message}
+          `,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
       
       setIsSubmitting(false)
       setIsSubmitted(true)
       setFormState({
         name: "",
         email: "",
-        subject: "general",
+        subject: "waitlist",
         message: "",
       })
     } catch (err) {
@@ -108,15 +127,36 @@ export default function ContactPage() {
     }
 
     try {
-      // Here you would typically send the demo request to your backend
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 'gentest.official@gmail.com',
+          subject: `[DEMO REQUEST] New demo request from ${formState.name}`,
+          text: `
+Name: ${formState.name}
+Email: ${formState.email}
+Preferred Date: ${demoDate}
+Preferred Time: ${demoTime}
+
+Additional Notes:
+${formState.message}
+          `,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
       
       setIsSubmitting(false)
       setIsDemoScheduled(true)
       setFormState({
         name: "",
         email: "",
-        subject: "general",
+        subject: "waitlist",
         message: "",
       })
       setDemoDate("")
