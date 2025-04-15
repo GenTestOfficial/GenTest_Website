@@ -298,9 +298,6 @@ ${formState.message}
                         <SelectItem value="feedback">Product Feedback</SelectItem>
                         <SelectItem value="billing">Billing Question</SelectItem>
                         <SelectItem value="other">Other</SelectItem>
-                                <SelectItem value="waitlist" className="bg-gradient-to-r from-violet-500/20 to-teal-500/20">
-                                  Join Waitlist
-                                </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -316,79 +313,6 @@ ${formState.message}
                               className="focus:border-purple-500 focus:ring-purple-500/20"
                             />
                           </div>
-                          {isWaitlist && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.5 }}
-                              className="mt-6 p-6 rounded-xl bg-gradient-to-r from-violet-500/10 to-teal-500/10 border border-violet-500/20"
-                            >
-                              <div className="flex items-center gap-4 mb-4">
-                                <div className="p-3 rounded-full bg-violet-500/20">
-                                  <Sparkles className="h-6 w-6 text-violet-500" />
-                                </div>
-                                <div>
-                                  <h3 className="text-xl font-semibold text-foreground">Join Our Waitlist</h3>
-                                  <p className="text-muted-foreground">Be among the first to experience our platform</p>
-                                </div>
-                              </div>
-                              <div className="space-y-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                  <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
-                                      Full Name
-                                    </label>
-                                    <input
-                                      type="text"
-                                      id="name"
-                                      value={formState.name}
-                                      onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                                      className="w-full px-4 py-3 rounded-lg border border-muted bg-background text-foreground focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all duration-200"
-                                      placeholder="Enter your full name"
-                                    />
-                                  </div>
-                                  <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
-                                      Email
-                                    </label>
-                                    <input
-                                      type="email"
-                                      id="email"
-                                      value={formState.email}
-                                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                                      className="w-full px-4 py-3 rounded-lg border border-muted bg-background text-foreground focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all duration-200"
-                                      placeholder="Enter your email"
-                                    />
-                                  </div>
-                                </div>
-                                <div>
-                                  <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">
-                                    Why are you interested in joining? (Optional)
-                                  </label>
-                                  <textarea
-                                    id="message"
-                                    value={formState.message}
-                                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                                    rows={4}
-                                    className="w-full px-4 py-3 rounded-lg border border-muted bg-background text-foreground focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all duration-200"
-                                    placeholder="Tell us why you're interested in joining our waitlist..."
-                    />
-                  </div>
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <CheckCircle2 className="h-4 w-4 text-green-500" />
-                                  <span>Get early access to new features</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <CheckCircle2 className="h-4 w-4 text-green-500" />
-                                  <span>Receive exclusive updates and offers</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <CheckCircle2 className="h-4 w-4 text-green-500" />
-                                  <span>Priority support when you join</span>
-                                </div>
-                              </div>
-                            </motion.div>
-                          )}
                           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     type="submit"
@@ -408,11 +332,18 @@ ${formState.message}
               
               <TabsContent value="waitlist">
                 <Card className="border border-purple-500/20 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <CardHeader className="bg-gradient-to-r from-purple-500/5 to-purple-700/5 py-3">
-                    <CardTitle className="text-lg">Join Our Waitlist</CardTitle>
-                    <CardDescription>Be among the first to experience our platform</CardDescription>
+                  <CardHeader className="bg-gradient-to-r from-purple-500/5 to-purple-700/5 py-6">
+                    <div className="flex items-center gap-4 mb-2">
+                      <div className="p-3 rounded-full bg-gradient-to-r from-violet-500/20 to-teal-500/20">
+                        <Sparkles className="h-6 w-6 text-violet-500" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-teal-500">Join Our Waitlist</CardTitle>
+                        <CardDescription className="text-lg mt-1">Be among the first to experience our platform</CardDescription>
+                      </div>
+                    </div>
                   </CardHeader>
-                  <CardContent className="py-4">
+                  <CardContent className="py-6">
                     <AnimatePresence mode="wait">
                       {isSubmitted ? (
                         <motion.div
@@ -432,7 +363,7 @@ ${formState.message}
                       ) : (
                         <motion.form 
                           onSubmit={handleSubmit} 
-                          className="space-y-4"
+                          className="space-y-6"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}
@@ -444,21 +375,21 @@ ${formState.message}
                               <AlertDescription>{error}</AlertDescription>
                             </Alert>
                           )}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <Label htmlFor="waitlist-name">Full Name *</Label>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                              <Label htmlFor="waitlist-name" className="text-base">Full Name *</Label>
                               <Input
                                 id="waitlist-name"
                                 name="name"
                                 value={formState.name}
                                 onChange={handleChange}
                                 required
-                                className="focus:border-purple-500 focus:ring-purple-500/20"
+                                className="h-12 text-base focus:border-purple-500 focus:ring-purple-500/20"
                                 placeholder="Enter your full name"
                               />
                             </div>
-                            <div>
-                              <Label htmlFor="waitlist-email">Email *</Label>
+                            <div className="space-y-2">
+                              <Label htmlFor="waitlist-email" className="text-base">Email *</Label>
                               <Input
                                 id="waitlist-email"
                                 name="email"
@@ -466,45 +397,58 @@ ${formState.message}
                                 value={formState.email}
                                 onChange={handleChange}
                                 required
-                                className="focus:border-purple-500 focus:ring-purple-500/20"
+                                className="h-12 text-base focus:border-purple-500 focus:ring-purple-500/20"
                                 placeholder="Enter your email"
                               />
                             </div>
                           </div>
-                          <div>
-                            <Label htmlFor="waitlist-message">Why are you interested in joining? (Optional)</Label>
+                          <div className="space-y-2">
+                            <Label htmlFor="waitlist-message" className="text-base">Why are you interested in joining? (Optional)</Label>
                             <Textarea
                               id="waitlist-message"
                               name="message"
                               value={formState.message}
                               onChange={handleChange}
                               rows={4}
-                              className="focus:border-purple-500 focus:ring-purple-500/20"
+                              className="text-base focus:border-purple-500 focus:ring-purple-500/20"
                               placeholder="Tell us why you're interested in joining our waitlist..."
                             />
                           </div>
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <div className="flex items-center gap-2">
-                              <CheckCircle2 className="h-4 w-4 text-green-500" />
-                              <span>Get early access to new features</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <CheckCircle2 className="h-4 w-4 text-green-500" />
-                              <span>Receive exclusive updates and offers</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <CheckCircle2 className="h-4 w-4 text-green-500" />
-                              <span>Priority support when you join</span>
+                          <div className="space-y-4 p-6 rounded-xl bg-gradient-to-r from-violet-500/5 to-teal-500/5 border border-violet-500/10">
+                            <h3 className="text-lg font-semibold text-foreground">Benefits of Joining</h3>
+                            <div className="space-y-3">
+                              <div className="flex items-center gap-3">
+                                <div className="p-2 rounded-full bg-green-500/10">
+                                  <CheckCircle2 className="h-5 w-5 text-green-500" />
+                                </div>
+                                <span className="text-base">Get early access to new features</span>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <div className="p-2 rounded-full bg-green-500/10">
+                                  <CheckCircle2 className="h-5 w-5 text-green-500" />
+                                </div>
+                                <span className="text-base">Receive exclusive updates and offers</span>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <div className="p-2 rounded-full bg-green-500/10">
+                                  <CheckCircle2 className="h-5 w-5 text-green-500" />
+                                </div>
+                                <span className="text-base">Priority support when you join</span>
+                              </div>
                             </div>
                           </div>
-                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                          <motion.div 
+                            whileHover={{ scale: 1.02 }} 
+                            whileTap={{ scale: 0.98 }}
+                            className="pt-4"
+                          >
                             <Button
                               type="submit"
-                              className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white"
+                              className="w-full h-12 text-base bg-gradient-to-r from-violet-600 to-teal-600 hover:from-violet-700 hover:to-teal-700 text-white shadow-lg"
                               disabled={isSubmitting}
                             >
                               {isSubmitting ? "Joining..." : "Join Waitlist"}
-                              <Sparkles className="ml-2 h-4 w-4" />
+                              <Sparkles className="ml-2 h-5 w-5" />
                             </Button>
                           </motion.div>
                         </motion.form>
