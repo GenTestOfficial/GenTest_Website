@@ -23,12 +23,12 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
-  const [activeTab, setActiveTab] = useState("message")
+  const [activeTab, setActiveTab] = useState("waitlist")
   const [activeFaq, setActiveFaq] = useState(0)
   const [demoDate, setDemoDate] = useState("")
   const [demoTime, setDemoTime] = useState("")
   const [isDemoScheduled, setIsDemoScheduled] = useState(false)
-  const [isWaitlist, setIsWaitlist] = useState(false)
+  const [isWaitlist, setIsWaitlist] = useState(true)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
