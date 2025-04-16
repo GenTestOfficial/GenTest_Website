@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { ClerkProvider } from '@clerk/nextjs'
 import { Footer } from "@/components/footer"
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -33,6 +34,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <Analytics />
           </ThemeProvider>
         </body>
       </html>

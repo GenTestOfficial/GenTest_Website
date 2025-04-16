@@ -50,45 +50,6 @@ const AI_MODELS: { free: AIModels; pro: AIModels } = {
   },
 };
 
-// Helper function to detect language from code
-function detectLanguage(code: string): string {
-  if (code.includes('def ') || code.includes('import ')) return 'python';
-  if (code.includes('function ') || code.includes('const ') || code.includes('let ')) return 'javascript';
-  if (code.includes('public class ') || code.includes('private ')) return 'java';
-  if (code.includes('fn ') || code.includes('let ')) return 'rust';
-  if (code.includes('func ') || code.includes('package ')) return 'go';
-  if (code.includes('class ') || code.includes('namespace ')) return 'cpp';
-  return 'javascript'; // default
-}
-
-// Helper function to determine test framework based on language
-function getTestFramework(language: string, framework: string): string {
-  const frameworks: { [key: string]: { [key: string]: string } } = {
-    javascript: {
-      jest: 'Jest',
-      mocha: 'Mocha',
-    },
-    python: {
-      pytest: 'PyTest',
-      unittest: 'unittest',
-    },
-    java: {
-      junit: 'JUnit',
-    },
-    rust: {
-      rusttest: 'Rust Test',
-    },
-    go: {
-      gotest: 'Go Test',
-    },
-    cpp: {
-      cpptest: 'Catch2',
-    },
-  };
-
-  return frameworks[language]?.[framework] || framework;
-}
-
 export async function POST(req: Request) {
   try {
     const { userId } = await auth();
@@ -121,12 +82,10 @@ export async function POST(req: Request) {
       return new NextResponse('Token limit exceeded', { status: 429 });
     }
 
-    const language = detectLanguage(code);
-    const testFramework = getTestFramework(language, framework);
-
     // Construct the prompt for the AI model
-    const prompt = `Generate comprehensive test cases for the following ${language} code using ${testFramework}. 
-    Follow the Arrange-Act-Assert pattern and include tests for edge cases and error handling.
+    const prompt = `Analyze the following code and generate comprehensive test cases using the appropriate test framework.
+    First, identify the programming language and the most suitable test framework for that language.
+    Then, generate tests following the Arrange-Act-Assert pattern, including tests for edge cases and error handling.
     
     Code:
     ${code}
@@ -134,11 +93,16 @@ export async function POST(req: Request) {
     Generate tests that:
     1. Cover all functions and methods
     2. Include edge cases and error handling
-    3. Follow best practices for ${testFramework}
+    3. Follow best practices for the identified test framework
     4. Include clear comments and documentation
     5. Are properly formatted and indented
     
-    Return only the test code, no explanations.`;
+    Return the response in this exact format:
+    {
+      "language": "detected language",
+      "framework": "detected framework",
+      "tests": "generated test code"
+    }`;
 
     let response;
     try {
@@ -164,17 +128,27 @@ export async function POST(req: Request) {
         throw new Error('No response from AI model');
       }
 
+      let parsedResponse;
+      try {
+        parsedResponse = JSON.parse(response);
+      } catch (error) {
+        console.error('Error parsing AI response:', error);
+        return new NextResponse('Failed to parse AI response', { status: 500 });
+      }
+
+      const { language, framework: detectedFramework, tests } = parsedResponse;
+
       // Generate documentation using the same AI model
       const documentationPrompt = `Analyze the following test code and provide detailed documentation following this structure:
 1. Overview: Brief explanation of what the tests cover
 2. Test Structure: Explain the Arrange-Act-Assert pattern used
 3. Coverage Analysis: What specific functionality is being tested
-4. Framework-Specific Features: How the tests leverage ${framework}'s features
+4. Framework-Specific Features: How the tests leverage ${detectedFramework}'s features
 5. Best Practices: What testing best practices are implemented
 6. Implementation Details: Specific test cases and their purpose
 
 Test code to analyze:
-${response}
+${tests}
 
 Respond in this exact format:
 {
@@ -219,25 +193,25 @@ Respond in this exact format:
       }
 
       // Calculate test coverage and count
-      const testCases = response.split(/\n(?=test_|it\(|describe\(|def test_)/).filter(Boolean);
+      const testCases = tests.split(/\n(?=test_|it\(|describe\(|def test_)/).filter(Boolean);
       const testCount = testCases.length;
       const coverage = Math.min(Math.floor((testCount * 20) + 70), 100);
 
       // Update token usage
-      await updateUserTokenUsage(userId, response.length);
+      await updateUserTokenUsage(userId, tests.length);
 
       // Create test history
       await createTestHistory(
         userId,
         code,
-        response,
-        framework,
+        tests,
+        detectedFramework,
         language,
-        response.length
+        tests.length
       );
 
       return NextResponse.json({
-        tests: response,
+        tests,
         coverage,
         testCount,
         documentation

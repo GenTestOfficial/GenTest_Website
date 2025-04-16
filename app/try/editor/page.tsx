@@ -35,6 +35,7 @@ import { toast } from "sonner"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { useDropzone } from "react-dropzone"
+import { Label } from "@/components/ui/label"
 
 const AI_MODELS = {
   free: {
@@ -59,6 +60,49 @@ const AI_MODELS = {
   },
 }
 
+const TEST_FRAMEWORKS = {
+  "jest": {
+    name: "Jest",
+    description: "JavaScript/TypeScript testing framework",
+    language: "javascript"
+  },
+  "mocha": {
+    name: "Mocha",
+    description: "JavaScript/TypeScript testing framework with Chai",
+    language: "javascript"
+  },
+  "pytest": {
+    name: "PyTest",
+    description: "Python testing framework",
+    language: "python"
+  },
+  "unittest": {
+    name: "unittest",
+    description: "Python's built-in testing framework",
+    language: "python"
+  },
+  "junit": {
+    name: "JUnit",
+    description: "Java testing framework",
+    language: "java"
+  },
+  "cpptest": {
+    name: "Catch2",
+    description: "C++ testing framework",
+    language: "cpp"
+  },
+  "rusttest": {
+    name: "Rust Test",
+    description: "Rust's built-in testing framework",
+    language: "rust"
+  },
+  "gotest": {
+    name: "Go Test",
+    description: "Go's built-in testing framework",
+    language: "go"
+  }
+};
+
 interface TestDocumentation {
   overview: string;
   testStructure: string;
@@ -68,13 +112,16 @@ interface TestDocumentation {
   implementationNotes: string[];
 }
 
+type FrameworkKey = keyof typeof TEST_FRAMEWORKS;
+
 const EditorPage = () => {
   const { isLoaded, isSignedIn, user } = useUser();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("code");
   const [selectedModel, setSelectedModel] = useState<string>("gpt-3.5-turbo");
-  const [selectedFramework, setSelectedFramework] = useState<string>("jest");
+  const [selectedFramework, setSelectedFramework] = useState<FrameworkKey>("jest");
   const [code, setCode] = useState<string>("");
+  const [detectedLanguage, setDetectedLanguage] = useState<string>("");
   const [testCode, setTestCode] = useState<string>("");
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -249,6 +296,59 @@ const EditorPage = () => {
     URL.revokeObjectURL(url);
   };
 
+  // Add language detection function
+  const detectLanguage = (code: string) => {
+    if (!code.trim()) {
+      setDetectedLanguage("");
+      return;
+    }
+
+    // Check for Python syntax
+    if (code.includes("def ") || code.includes("import ") || code.includes("print(")) {
+      setDetectedLanguage("python");
+      setSelectedFramework("pytest");
+      return;
+    }
+
+    // Check for Java syntax
+    if (code.includes("public class") || code.includes("private ") || code.includes("public ")) {
+      setDetectedLanguage("java");
+      setSelectedFramework("junit");
+      return;
+    }
+
+    // Check for C++ syntax
+    if (code.includes("#include") || code.includes("namespace ") || code.includes("std::")) {
+      setDetectedLanguage("cpp");
+      setSelectedFramework("cpptest");
+      return;
+    }
+
+    // Check for Rust syntax
+    if (code.includes("fn ") || code.includes("let ") || code.includes("pub ")) {
+      setDetectedLanguage("rust");
+      setSelectedFramework("rusttest");
+      return;
+    }
+
+    // Check for Go syntax
+    if (code.includes("package ") || code.includes("func ") || code.includes("import ")) {
+      setDetectedLanguage("go");
+      setSelectedFramework("gotest");
+      return;
+    }
+
+    // Default to JavaScript/TypeScript
+    setDetectedLanguage("javascript");
+    setSelectedFramework("jest");
+  };
+
+  // Update code state and detect language
+  const handleCodeChange = (newCode: string) => {
+    setCode(newCode);
+    detectLanguage(newCode);
+  };
+
   if (!isLoaded) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -329,9 +429,16 @@ const EditorPage = () => {
                     <Textarea
                       className="min-h-[300px] font-mono"
                       value={code}
-                      onChange={(e) => setCode(e.target.value)}
+                      onChange={(e) => handleCodeChange(e.target.value)}
                       placeholder="Enter your code here..."
                     />
+                    {detectedLanguage && (
+                      <div className="mt-2 text-sm text-muted-foreground">
+                        Detected language: <span className="font-medium">{detectedLanguage}</span>
+                        <span className="mx-2">•</span>
+                        Selected framework: <span className="font-medium">{TEST_FRAMEWORKS[selectedFramework].name}</span>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -676,6 +783,32 @@ npx ${selectedFramework}`}
                 </CardContent>
               </Card>
             )}
+
+            <Card className="border border-purple-500/20 shadow-lg sticky top-24">
+              <CardHeader className="bg-gradient-to-r from-purple-500/10 to-purple-700/10 py-3">
+                <CardTitle className="flex items-center text-lg">
+                  <Brain className="h-5 w-5 mr-2 text-purple-500" />
+                  Test Framework Selection
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 space-y-4">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="framework">Test Framework:</Label>
+                  <Select value={selectedFramework} onValueChange={(value: FrameworkKey) => setSelectedFramework(value)}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select framework" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.entries(TEST_FRAMEWORKS).map(([key, framework]) => (
+                        <SelectItem key={key} value={key as FrameworkKey}>
+                          {framework.name} ({framework.language})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </motion.div>
 
