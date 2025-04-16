@@ -16,7 +16,7 @@ export type Plan = {
 export const PLANS: Record<string, Plan> = {
   PRO: {
     name: 'Pro',
-    price: 25,
+    price: 20,
     priceId: process.env.STRIPE_PRO_PRICE_ID!,
     features: [
       '100,000 tokens per month',

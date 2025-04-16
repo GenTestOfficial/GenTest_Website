@@ -232,7 +232,7 @@ export default function PricingPage() {
               </div>
               <CardDescription className="text-muted-foreground">Perfect for professional developers</CardDescription>
               <div className="mt-5 mb-1">
-                <div className="text-4xl font-bold">$25<span className="text-lg font-normal text-muted-foreground">/mo</span></div>
+                <div className="text-4xl font-bold">$20<span className="text-lg font-normal text-muted-foreground">/mo</span></div>
                 <div className="text-sm text-muted-foreground mt-1">per user</div>
               </div>
             </CardHeader>
