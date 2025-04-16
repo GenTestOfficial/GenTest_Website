@@ -311,8 +311,8 @@ ${formState.message}
                       onChange={handleChange}
                       required
                               className="focus:border-purple-500 focus:ring-purple-500/20"
-                            />
-                          </div>
+                    />
+                  </div>
                           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     type="submit"
@@ -436,7 +436,7 @@ ${formState.message}
                                 <span className="text-base">Priority support when you join</span>
                               </div>
                             </div>
-                          </div>
+        </div>
                           <motion.div 
                             whileHover={{ scale: 1.02 }} 
                             whileTap={{ scale: 0.98 }}
