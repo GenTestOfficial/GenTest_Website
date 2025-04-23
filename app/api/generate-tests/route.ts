@@ -83,26 +83,30 @@ export async function POST(req: Request) {
     }
 
     // Construct the prompt for the AI model
-    const prompt = `Analyze the following code and generate comprehensive test cases using the appropriate test framework.
-    First, identify the programming language and the most suitable test framework for that language.
-    Then, generate tests following the Arrange-Act-Assert pattern, including tests for edge cases and error handling.
-    
-    Code:
-    ${code}
-    
-    Generate tests that:
-    1. Cover all functions and methods
-    2. Include edge cases and error handling
-    3. Follow best practices for the identified test framework
-    4. Include clear comments and documentation
-    5. Are properly formatted and indented
-    
-    Return the response in this exact format:
-    {
-      "language": "detected language",
-      "framework": "detected framework",
-      "tests": "generated test code"
-    }`;
+    const prompt = `You are a test generation assistant. Your task is to:
+1. Analyze the provided code
+2. Identify the programming language
+3. Determine the most suitable test framework
+4. Generate comprehensive test cases
+
+IMPORTANT: You MUST respond in valid JSON format with EXACTLY these fields:
+{
+  "language": "string (e.g., 'javascript', 'python', 'cpp', etc.)",
+  "framework": "string (e.g., 'Jest', 'PyTest', 'Catch2', etc.)",
+  "tests": "string (the generated test code)"
+}
+
+DO NOT include any additional text, explanations, or markdown formatting. The response must be valid JSON that can be parsed.
+
+Code to analyze:
+${code}
+
+Generate tests that:
+1. Cover all functions and methods
+2. Include edge cases and error handling
+3. Follow best practices for the identified test framework
+4. Include clear comments and documentation
+5. Are properly formatted and indented`;
 
     let response;
     try {
@@ -112,6 +116,7 @@ export async function POST(req: Request) {
           messages: [{ role: 'user', content: prompt }],
           temperature: 0.7,
           max_tokens: 2000,
+          response_format: { type: "json_object" }
         });
         response = completion.choices[0]?.message?.content;
       } else if (model.startsWith('claude')) {
@@ -128,12 +133,26 @@ export async function POST(req: Request) {
         throw new Error('No response from AI model');
       }
 
+      // Clean the response to ensure it's valid JSON
+      const cleanedResponse = response.trim()
+        .replace(/^```json\s*/, '')  // Remove ```json if present
+        .replace(/```\s*$/, '')      // Remove trailing ```
+        .replace(/^\s*{\s*/, '{')    // Remove whitespace after {
+        .replace(/\s*}\s*$/, '}');   // Remove whitespace before }
+
       let parsedResponse;
       try {
-        parsedResponse = JSON.parse(response);
+        parsedResponse = JSON.parse(cleanedResponse);
       } catch (error) {
         console.error('Error parsing AI response:', error);
+        console.error('Raw response:', response);
         return new NextResponse('Failed to parse AI response', { status: 500 });
+      }
+
+      // Validate the parsed response has all required fields
+      if (!parsedResponse.language || !parsedResponse.framework || !parsedResponse.tests) {
+        console.error('Invalid response structure:', parsedResponse);
+        return new NextResponse('Invalid response structure from AI', { status: 500 });
       }
 
       const { language, framework: detectedFramework, tests } = parsedResponse;
