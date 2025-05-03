@@ -1,6 +1,19 @@
-import { clerkMiddleware } from '@clerk/nextjs/server'
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export default clerkMiddleware()
+const publicPaths = ['/', '/product', '/pricing', '/contact']
+
+const isPublic = createRouteMatcher(publicPaths)
+
+export default clerkMiddleware((auth, req) => {
+  if (isPublic(req)) {
+    const response = NextResponse.next()
+    response.headers.set('X-Robots-Tag', 'index, follow')
+    return response
+  }
+  return NextResponse.next()
+})
 
 export const config = {
   matcher: [
