@@ -366,111 +366,117 @@ export default function PricingPage() {
         <p className="text-center text-muted-foreground mb-8 max-w-xl mx-auto">
           See exactly what features are included in each plan to help you make the right choice for your needs.
         </p>
-        <div className="overflow-x-auto rounded-lg border border-slate-800 shadow-xl bg-slate-900/60 backdrop-blur-sm">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b border-slate-800">
-                <th className="text-left py-4 px-6 bg-slate-900/80">Feature</th>
-                <th className="text-center py-4 px-6 bg-slate-900/80">Free</th>
-                <th className="text-center py-4 px-6 bg-purple-900/30">Pro</th>
-                <th className="text-center py-4 px-6 bg-slate-900/80">Enterprise</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-slate-800 bg-slate-900/20">
-                <td className="py-4 px-6 font-medium">Monthly Tokens</td>
-                <td className="text-center py-4 px-6">5,000</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">100,000</td>
-                <td className="text-center py-4 px-6">Unlimited</td>
-              </tr>
-              <tr className="border-b border-slate-800">
-                <td className="py-4 px-6 font-medium">Languages Supported</td>
-                <td className="text-center py-4 px-6">JavaScript, Python</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">JS, TS, Python, Java, C#</td>
-                <td className="text-center py-4 px-6">All + Custom</td>
-              </tr>
-              <tr className="border-b border-slate-800 bg-slate-900/20">
-                <td className="py-4 px-6 font-medium">Test Frameworks</td>
-                <td className="text-center py-4 px-6">Jest, PyTest</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">All Major Frameworks</td>
-                <td className="text-center py-4 px-6">All + Custom</td>
-              </tr>
-              <tr className="border-b border-slate-800">
-                <td className="py-4 px-6 font-medium">File Uploads</td>
-                <td className="text-center py-4 px-6">1 file (max 500 lines)</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">10 files</td>
-                <td className="text-center py-4 px-6">Unlimited</td>
-              </tr>
-              <tr className="border-b border-slate-800 bg-slate-900/20">
-                <td className="py-4 px-6 font-medium">API Access</td>
-                <td className="text-center py-4 px-6">
-                  <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
-                </td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">
-                  <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
-                </td>
-                <td className="text-center py-4 px-6">
-                  <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
-                </td>
-              </tr>
-              <tr className="border-b border-slate-800">
-                <td className="py-4 px-6 font-medium">Test Coverage</td>
-                <td className="text-center py-4 px-6">Basic (60-75%)</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">Advanced (75-90%)</td>
-                <td className="text-center py-4 px-6">Maximum (90%+)</td>
-              </tr>
-              <tr className="border-b border-slate-800 bg-slate-900/20">
-                <td className="py-4 px-6 font-medium">Edge Case Detection</td>
-                <td className="text-center py-4 px-6">
-                  <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
-                </td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">
-                  <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
-                </td>
-                <td className="text-center py-4 px-6">
-                  <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
-                </td>
-              </tr>
-              <tr className="border-b border-slate-800">
-                <td className="py-4 px-6 font-medium">AI Models</td>
-                <td className="text-center py-4 px-6">Standard</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">Advanced</td>
-                <td className="text-center py-4 px-6">Premium</td>
-              </tr>
-              <tr className="border-b border-slate-800 bg-slate-900/20">
-                <td className="py-4 px-6 font-medium">Version Control Integration</td>
-                <td className="text-center py-4 px-6">
-                  <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
-                </td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">GitHub, GitLab</td>
-                <td className="text-center py-4 px-6">All + Self-hosted</td>
-              </tr>
-              <tr className="border-b border-slate-800">
-                <td className="py-4 px-6 font-medium">Support</td>
-                <td className="text-center py-4 px-6">Community</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">Priority Email (24h)</td>
-                <td className="text-center py-4 px-6">Dedicated + SLA</td>
-              </tr>
-              <tr className="border-b border-slate-800 bg-slate-900/20">
-                <td className="py-4 px-6 font-medium">Security Features</td>
-                <td className="text-center py-4 px-6">Standard</td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">Enhanced</td>
-                <td className="text-center py-4 px-6">Enterprise-grade</td>
-              </tr>
-              <tr className="bg-slate-900/20">
-                <td className="py-4 px-6 font-medium">Custom Integrations</td>
-                <td className="text-center py-4 px-6">
-                  <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
-                </td>
-                <td className="text-center py-4 px-6 bg-purple-900/10">
-                  <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
-                </td>
-                <td className="text-center py-4 px-6">
-                  <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="relative">
+          <div className="overflow-x-auto rounded-lg border border-slate-800 shadow-xl bg-slate-900/60 backdrop-blur-sm">
+            <div className="min-w-[800px]">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-800">
+                    <th className="text-left py-4 px-6 bg-slate-900/80 sticky left-0 z-10">Feature</th>
+                    <th className="text-center py-4 px-6 bg-slate-900/80">Free</th>
+                    <th className="text-center py-4 px-6 bg-purple-900/30">Pro</th>
+                    <th className="text-center py-4 px-6 bg-slate-900/80">Enterprise</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-slate-800 bg-slate-900/20">
+                    <td className="py-4 px-6 font-medium">Monthly Tokens</td>
+                    <td className="text-center py-4 px-6">5,000</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">100,000</td>
+                    <td className="text-center py-4 px-6">Unlimited</td>
+                  </tr>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-4 px-6 font-medium">Languages Supported</td>
+                    <td className="text-center py-4 px-6">JavaScript, Python</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">JS, TS, Python, Java, C#</td>
+                    <td className="text-center py-4 px-6">All + Custom</td>
+                  </tr>
+                  <tr className="border-b border-slate-800 bg-slate-900/20">
+                    <td className="py-4 px-6 font-medium">Test Frameworks</td>
+                    <td className="text-center py-4 px-6">Jest, PyTest</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">All Major Frameworks</td>
+                    <td className="text-center py-4 px-6">All + Custom</td>
+                  </tr>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-4 px-6 font-medium">File Uploads</td>
+                    <td className="text-center py-4 px-6">1 file (max 500 lines)</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">10 files</td>
+                    <td className="text-center py-4 px-6">Unlimited</td>
+                  </tr>
+                  <tr className="border-b border-slate-800 bg-slate-900/20">
+                    <td className="py-4 px-6 font-medium">API Access</td>
+                    <td className="text-center py-4 px-6">
+                      <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
+                    </td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">
+                      <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
+                    </td>
+                    <td className="text-center py-4 px-6">
+                      <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
+                    </td>
+                  </tr>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-4 px-6 font-medium">Test Coverage</td>
+                    <td className="text-center py-4 px-6">Basic (60-75%)</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">Advanced (75-90%)</td>
+                    <td className="text-center py-4 px-6">Maximum (90%+)</td>
+                  </tr>
+                  <tr className="border-b border-slate-800 bg-slate-900/20">
+                    <td className="py-4 px-6 font-medium">Edge Case Detection</td>
+                    <td className="text-center py-4 px-6">
+                      <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
+                    </td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">
+                      <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
+                    </td>
+                    <td className="text-center py-4 px-6">
+                      <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
+                    </td>
+                  </tr>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-4 px-6 font-medium">AI Models</td>
+                    <td className="text-center py-4 px-6">Standard</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">Advanced</td>
+                    <td className="text-center py-4 px-6">Premium</td>
+                  </tr>
+                  <tr className="border-b border-slate-800 bg-slate-900/20">
+                    <td className="py-4 px-6 font-medium">Version Control Integration</td>
+                    <td className="text-center py-4 px-6">
+                      <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
+                    </td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">GitHub, GitLab</td>
+                    <td className="text-center py-4 px-6">All + Self-hosted</td>
+                  </tr>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-4 px-6 font-medium">Support</td>
+                    <td className="text-center py-4 px-6">Community</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">Priority Email (24h)</td>
+                    <td className="text-center py-4 px-6">Dedicated + SLA</td>
+                  </tr>
+                  <tr className="border-b border-slate-800 bg-slate-900/20">
+                    <td className="py-4 px-6 font-medium">Security Features</td>
+                    <td className="text-center py-4 px-6">Standard</td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">Enhanced</td>
+                    <td className="text-center py-4 px-6">Enterprise-grade</td>
+                  </tr>
+                  <tr className="bg-slate-900/20">
+                    <td className="py-4 px-6 font-medium">Custom Integrations</td>
+                    <td className="text-center py-4 px-6">
+                      <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
+                    </td>
+                    <td className="text-center py-4 px-6 bg-purple-900/10">
+                      <XCircle className="h-5 w-5 text-red-500/70 mx-auto" />
+                    </td>
+                    <td className="text-center py-4 px-6">
+                      <CheckCircle className="h-5 w-5 text-green-500 mx-auto" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent pointer-events-none md:hidden"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent pointer-events-none md:hidden"></div>
         </div>
       </motion.div>
 

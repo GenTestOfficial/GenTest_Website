@@ -11,7 +11,40 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "GenTest - AI-Powered Test Generation",
-  description: "Generate comprehensive test suites with AI",
+  description: "Generate comprehensive test suites with AI. Save time and improve code coverage with automated test generation.",
+  keywords: ["AI testing", "automated testing", "test generation", "code coverage", "software testing"],
+  authors: [{ name: "GenTest Team" }],
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://gentest.com',
+    title: 'GenTest - AI-Powered Test Generation',
+    description: 'Generate comprehensive test suites with AI. Save time and improve code coverage.',
+    siteName: 'GenTest',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GenTest - AI-Powered Test Generation',
+    description: 'Generate comprehensive test suites with AI. Save time and improve code coverage.',
+    creator: '@gentest',
+  },
 }
 
 export default function RootLayout({
@@ -22,6 +55,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <meta name="theme-color" content="#000000" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        </head>
         <body className={inter.className}>
           <ThemeProvider
             attribute="class"

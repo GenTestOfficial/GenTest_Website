@@ -152,7 +152,7 @@ describe('User Database Operations', () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-teal-900/20 z-0" />
-        <div className="container relative z-10 py-20">
+        <div className="container relative z-10 py-12 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Hero Content */}
             <motion.div
@@ -160,23 +160,23 @@ describe('User Database Operations', () => {
               animate={isVisible ? "visible" : "hidden"}
               variants={fadeIn}
               transition={{ duration: 0.5 }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight">
                 Generate Tests with{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-teal-400">AI</span>
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-base md:text-xl text-muted-foreground">
                 Automate unit and integration test writing with AI. Save time and improve code coverage.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/try">
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-violet-500 to-teal-400 hover:from-violet-600 hover:to-teal-500 text-lg px-8 py-6 text-white shadow-xl hover:shadow-2xl transition-all duration-200"
+                    className="bg-gradient-to-r from-violet-500 to-teal-400 hover:from-violet-600 hover:to-teal-500 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 text-white shadow-xl hover:shadow-2xl transition-all duration-200 w-full sm:w-auto"
                   >
                     Try GenTest Free
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                   </Button>
                 </Link>
               </div>
@@ -186,28 +186,28 @@ describe('User Database Operations', () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8"
               >
-                <div className="bg-muted/40 rounded-lg p-3 border border-muted flex flex-col items-center justify-center">
+                <div className="bg-muted/40 rounded-lg p-2 md:p-3 border border-muted flex flex-col items-center justify-center">
                   <div className="flex items-center mb-1">
-                    <CheckCircle className="h-4 w-4 text-teal-500 mr-1" />
-                    <span className="text-sm font-medium">AI Generated</span>
+                    <CheckCircle className="h-3 w-3 md:h-4 md:w-4 text-teal-500 mr-1" />
+                    <span className="text-xs md:text-sm font-medium">AI Generated</span>
                   </div>
-                  <span className="text-xs text-muted-foreground">No manual test writing</span>
+                  <span className="text-[10px] md:text-xs text-muted-foreground">No manual test writing</span>
                 </div>
-                <div className="bg-muted/40 rounded-lg p-3 border border-muted flex flex-col items-center justify-center">
+                <div className="bg-muted/40 rounded-lg p-2 md:p-3 border border-muted flex flex-col items-center justify-center">
                   <div className="flex items-center mb-1">
-                    <CheckCircle className="h-4 w-4 text-teal-500 mr-1" />
-                    <span className="text-sm font-medium">Multiple Frameworks</span>
+                    <CheckCircle className="h-3 w-3 md:h-4 md:w-4 text-teal-500 mr-1" />
+                    <span className="text-xs md:text-sm font-medium">Multiple Frameworks</span>
                   </div>
-                  <span className="text-xs text-muted-foreground">Jest, Cypress, Mocha & more</span>
+                  <span className="text-[10px] md:text-xs text-muted-foreground">Jest, Cypress, Mocha & more</span>
                 </div>
-                <div className="bg-muted/40 rounded-lg p-3 border border-muted flex flex-col items-center justify-center">
+                <div className="bg-muted/40 rounded-lg p-2 md:p-3 border border-muted flex flex-col items-center justify-center">
                   <div className="flex items-center mb-1">
-                    <CheckCircle className="h-4 w-4 text-teal-500 mr-1" />
-                    <span className="text-sm font-medium">Full Coverage</span>
+                    <CheckCircle className="h-3 w-3 md:h-4 md:w-4 text-teal-500 mr-1" />
+                    <span className="text-xs md:text-sm font-medium">Full Coverage</span>
                   </div>
-                  <span className="text-xs text-muted-foreground">Edge cases tested</span>
+                  <span className="text-[10px] md:text-xs text-muted-foreground">Edge cases tested</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -388,7 +388,7 @@ describe('User Database Operations', () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-muted/30 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(transparent,white,transparent)]"></div>
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
@@ -397,12 +397,12 @@ describe('User Database Operations', () => {
           transition={{ duration: 0.5 }}
           className="container relative"
         >
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-4">Real Results, Real Benefits</h2>
-            <p className="text-muted-foreground">See what developers are achieving with GenTest</p>
+          <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Real Results, Real Benefits</h2>
+            <p className="text-sm md:text-base text-muted-foreground">See what developers are achieving with GenTest</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

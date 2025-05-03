@@ -233,15 +233,15 @@ export default function ProductPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto mb-18"
+            className="text-center max-w-3xl mx-auto mb-12 md:mb-18"
           >
-            <h2 className="text-3xl font-bold mb-4">Advanced Architecture</h2>
-            <p className="text-muted-foreground">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Advanced Architecture</h2>
+            <p className="text-muted-foreground text-sm md:text-base">
               Built with cutting-edge technology to deliver accurate and reliable test generation
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto">
             {[
               {
                 title: "Code Processing Engine",
@@ -279,31 +279,31 @@ export default function ProductPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02, y: -5 }}
-                className={`bg-card rounded-xl p-6 shadow-lg border border-muted relative overflow-hidden group hover:shadow-2xl transition-all duration-300`}
+                className={`bg-card rounded-xl p-4 md:p-6 shadow-lg border border-muted relative overflow-hidden group hover:shadow-2xl transition-all duration-300`}
               >
                 <motion.div 
                   className={`absolute inset-0 bg-gradient-to-br ${module.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                 />
                 <div className="relative">
                   <motion.div 
-                    className="rounded-full bg-muted/50 w-12 h-12 flex items-center justify-center mb-4"
+                    className="rounded-full bg-muted/50 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-4"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
                     {module.icon}
                   </motion.div>
-                  <h3 className="text-xl font-semibold mb-2">{module.title}</h3>
-                  <p className="text-muted-foreground mb-4">{module.description}</p>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">{module.title}</h3>
+                  <p className="text-muted-foreground text-sm md:text-base mb-4">{module.description}</p>
                   <ul className="space-y-2">
                     {module.features.map((feature, i) => (
                       <motion.li 
                         key={i} 
-                        className="flex items-center text-sm"
+                        className="flex items-center text-xs md:text-sm"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.1 }}
                       >
-                        <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                        <CheckCircle className="h-3 w-3 md:h-4 md:w-4 text-green-500 mr-2" />
                         {feature}
                       </motion.li>
                     ))}
@@ -311,7 +311,7 @@ export default function ProductPage() {
                 </div>
               </motion.div>
             ))}
-              </div>
+          </div>
         </div>
       </section>
 
