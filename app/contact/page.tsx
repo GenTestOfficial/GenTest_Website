@@ -607,7 +607,7 @@ ${formState.message}
 
                   <div className="grid grid-cols-4 gap-2">
                     <motion.a 
-                      href="https://github.com/gentest" 
+                      href=" " 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-muted/50 text-foreground hover:text-purple-500 rounded-lg p-3 transition-all flex flex-col items-center justify-center hover:bg-purple-100/20"
@@ -618,7 +618,7 @@ ${formState.message}
                       <span className="text-xs">GitHub</span>
                     </motion.a>
                     <motion.a 
-                      href="https://twitter.com/gentest" 
+                      href="" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-muted/50 text-foreground hover:text-purple-500 rounded-lg p-3 transition-all flex flex-col items-center justify-center hover:bg-purple-100/20"
@@ -629,7 +629,7 @@ ${formState.message}
                       <span className="text-xs">Twitter</span>
                     </motion.a>
                     <motion.a 
-                      href="https://linkedin.com/company/gentest" 
+                      href="" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-muted/50 text-foreground hover:text-purple-500 rounded-lg p-3 transition-all flex flex-col items-center justify-center hover:bg-purple-100/20"
@@ -640,7 +640,7 @@ ${formState.message}
                       <span className="text-xs">LinkedIn</span>
                     </motion.a>
                     <motion.a 
-                      href="https://reddit.com/r/gentest" 
+                      href="" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-muted/50 text-foreground hover:text-purple-500 rounded-lg p-3 transition-all flex flex-col items-center justify-center hover:bg-purple-100/20"
