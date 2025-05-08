@@ -162,7 +162,7 @@ describe('User Database Operations', () => {
               transition={{ duration: 0.5 }}
               className="space-y-4 md:space-y-6"
             >
-              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight mt-24 md:mt-28">
                 Generate Tests with{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-teal-400">AI</span>
               </h1>
