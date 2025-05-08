@@ -664,6 +664,7 @@ npx ${selectedFramework}`}
                           variant="outline"
                           className="w-full mt-4 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-medium shadow-md"
                           onClick={() => router.push('/pricing')}
+                          aria-label="Upgrade to Pro plan"
                         >
                           Upgrade to Pro
                         </Button>
@@ -727,10 +728,11 @@ npx ${selectedFramework}`}
                     onClick={generateTests}
                     disabled={isGenerating || !code.trim()}
                     className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-medium shadow-md"
+                    aria-label={isGenerating ? "Generating tests" : "Generate tests"}
                   >
                     {isGenerating ? (
                       <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
                         Generating...
                       </>
                     ) : (
@@ -777,6 +779,7 @@ npx ${selectedFramework}`}
                     variant="outline"
                     className="w-full mt-4 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-medium shadow-md"
                     onClick={() => router.push('/pricing')}
+                    aria-label="Upgrade to Pro plan"
                   >
                     Upgrade Now
                   </Button>

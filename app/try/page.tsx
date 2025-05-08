@@ -629,8 +629,8 @@ func TestSubtract() {
                               <div className="h-3 w-3 rounded-full bg-yellow-500" />
                               <div className="h-3 w-3 rounded-full bg-green-500" />
                             </div>
-                            <div className="flex items-center text-xs text-slate-400">
-                              <FileCode className="h-3.5 w-3.5 mr-1.5 text-slate-400" />
+                            <div className="flex items-center text-xs text-slate-300">
+                              <FileCode className="h-3.5 w-3.5 mr-1.5 text-slate-300" />
                               {editorLanguage === 'javascript' ? 'JavaScript' : 
                                editorLanguage === 'python' ? 'Python' : 'Java'} - Edit code here
                             </div>
@@ -685,7 +685,7 @@ func TestSubtract() {
                           <div className="flex items-center gap-2">
                             <Label htmlFor="framework" className="mb-1">Test Framework:</Label>
                             <Select value={testFramework} onValueChange={setTestFramework}>
-                              <SelectTrigger className="w-[180px]">
+                              <SelectTrigger className="w-[180px]" aria-label="Select test framework">
                                 <SelectValue placeholder="Select framework" />
                               </SelectTrigger>
                               <SelectContent>
@@ -706,9 +706,10 @@ func TestSubtract() {
                               onClick={handleGenerate}
                               disabled={isGenerating || analyzing || !codeInput.trim()}
                               className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-medium shadow-md"
+                              aria-label={analyzing ? "Analyzing code" : isGenerating ? "Generating tests" : "Generate tests"}
                             >
                               {analyzing ? "Analyzing..." : isGenerating ? "Generating..." : "Generate Tests"}
-                              <Zap className="ml-2 h-4 w-4" />
+                              <Zap className="ml-2 h-4 w-4" aria-hidden="true" />
                             </Button>
                           </motion.div>
                         </div>
@@ -786,8 +787,8 @@ func TestSubtract() {
                       <CardContent className="p-0">
                         <div className="relative">
                           <div className="bg-slate-900 px-4 py-2 border-b border-slate-800 flex items-center justify-between">
-                            <div className="flex items-center text-xs text-slate-400">
-                              <GitBranch className="h-3.5 w-3.5 mr-1.5 text-slate-400" />
+                            <div className="flex items-center text-xs text-slate-300">
+                              <GitBranch className="h-3.5 w-3.5 mr-1.5 text-slate-300" />
                               {testFramework === 'jest' ? 'Jest Test' : 
                                testFramework === 'mocha' ? 'Mocha Test' : 
                                testFramework === 'pytest' ? 'PyTest Test' : 'JUnit Test'} - Generated code
@@ -1138,6 +1139,7 @@ func TestSubtract() {
                             onClick={handleUploadFiles} 
                             disabled={isUploading} 
                             className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-medium shadow-md"
+                            aria-label={isUploading ? "Uploading files" : "Upload files"}
                           >
                             {isUploading ? (
                               <>
@@ -1146,14 +1148,14 @@ func TestSubtract() {
                                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                                   className="mr-2"
                                 >
-                                  <Upload className="h-4 w-4" />
+                                  <Upload className="h-4 w-4" aria-hidden="true" />
                                 </motion.div>
                                 Uploading...
                               </>
                             ) : (
                               <>
                                 Upload Files
-                                <Upload className="ml-2 h-4 w-4" />
+                                <Upload className="ml-2 h-4 w-4" aria-hidden="true" />
                               </>
                             )}
                     </Button>
@@ -1185,7 +1187,7 @@ func TestSubtract() {
               </CardHeader>
                 <CardContent className="p-4 space-y-4">
                   <div>
-                    <h3 className="text-sm font-medium mb-2">How It Works</h3>
+                    <h2 className="text-sm font-medium mb-2">How It Works</h2>
                     <ul className="space-y-2 text-sm">
                       <motion.li 
                         className="flex items-start"
