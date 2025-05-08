@@ -54,31 +54,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: undefined,
-        layout: {
-          socialButtonsPlacement: "bottom",
-          socialButtonsVariant: "iconButton",
-          shimmer: false,
-        },
-        elements: {
-          card: "bg-background",
-          headerTitle: "hidden",
-          headerSubtitle: "hidden",
-          socialButtonsBlockButton: "bg-background hover:bg-muted",
-          formButtonPrimary: "bg-primary hover:bg-primary/90",
-          footerActionLink: "text-primary hover:text-primary/90",
-        },
-      }}
-    >
+    <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head>
           <meta name="theme-color" content="#000000" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-          <link rel="preconnect" href="https://accounts.dev" />
-          <link rel="preconnect" href="https://gentest.dev" />
         </head>
         <body className={inter.className}>
           <ThemeProvider
