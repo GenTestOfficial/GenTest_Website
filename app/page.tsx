@@ -174,10 +174,9 @@ describe('User Database Operations', () => {
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-violet-500 to-teal-400 hover:from-violet-600 hover:to-teal-500 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 text-white shadow-xl hover:shadow-2xl transition-all duration-200 w-full sm:w-auto"
-                    aria-label="Try GenTest for free"
                   >
                     Try GenTest Free
-                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" aria-hidden="true" />
+                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                   </Button>
                 </Link>
               </div>
@@ -240,7 +239,7 @@ describe('User Database Operations', () => {
                       className={`flex items-center space-x-2 px-4 py-2 rounded-t-lg text-sm font-medium transition-all ${
                         activeTab === index
                           ? "bg-slate-800 text-white"
-                          : "text-slate-300 hover:text-slate-200"
+                          : "text-slate-400 hover:text-slate-200"
                       }`}
                     >
                       {tab.icon}
@@ -278,7 +277,7 @@ describe('User Database Operations', () => {
                               transition={{ delay: i * 0.05, duration: 0.2 }}
                               className="flex"
                             >
-                              <span className="text-slate-300 w-8 inline-block select-none text-right pr-2">
+                              <span className="text-slate-500 w-8 inline-block select-none text-right pr-2">
                                 {i + 1}
                               </span>
                               <span className="flex-1">
@@ -319,8 +318,8 @@ describe('User Database Operations', () => {
                 {/* Terminal section */}
                 <div className="border-t border-slate-700 p-4 text-sm font-mono">
                   <div className="flex items-center mb-2">
-                    <Terminal className="h-4 w-4 text-slate-300 mr-2" />
-                    <span className="text-slate-300">Terminal</span>
+                    <Terminal className="h-4 w-4 text-slate-400 mr-2" />
+                    <span className="text-slate-400">Terminal</span>
                   </div>
                   
                   <div className="flex items-center text-slate-300">
@@ -347,7 +346,7 @@ describe('User Database Operations', () => {
                             >
                               <Play className="h-4 w-4" />
                             </motion.div>
-                            <span className="ml-2 text-slate-300">Running tests...</span>
+                            <span className="ml-2 text-slate-400">Running tests...</span>
                           </motion.div>
                         )}
                         {showResult && (
@@ -836,10 +835,9 @@ describe('User Database Operations', () => {
                       <Button 
                         size="lg" 
                         className="bg-gradient-to-r from-violet-500 to-teal-400 hover:from-violet-600 hover:to-teal-500 text-lg px-8 py-6 text-white shadow-2xl hover:shadow-[0_0_30px_rgba(167,139,250,0.5)] transition-all duration-200 w-full sm:w-auto"
-                        aria-label="Try GenTest for free"
                       >
                         Try GenTest Free
-                        <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                        <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </motion.div>
                   </Link>
@@ -853,7 +851,6 @@ describe('User Database Operations', () => {
                         size="lg" 
                         variant="outline" 
                         className="text-lg px-8 py-6 border-2 border-white/20 hover:bg-white/10 text-white w-full sm:w-auto"
-                        aria-label="View pricing plans"
                       >
                         View Pricing
                       </Button>

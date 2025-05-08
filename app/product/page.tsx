@@ -30,7 +30,7 @@ export default function ProductPage() {
     {
       cmd: "gentest init",
       output: [
-        { text: "🔍 Analyzing project structure...", color: "text-slate-300" },
+        { text: "🔍 Analyzing project structure...", color: "text-slate-400" },
         { text: "✓ Detected TypeScript project", color: "text-purple-400" },
         { text: "✓ Found Jest configuration", color: "text-purple-400" },
         { text: "✓ Initialized GenTest in current directory", color: "text-purple-400" }
@@ -40,7 +40,7 @@ export default function ProductPage() {
       cmd: "gentest analyze src/utils/calculator.ts",
       output: [
         { text: "✓ Analyzing file...", color: "text-purple-400" },
-        { text: "Found functions:", color: "text-slate-300" },
+        { text: "Found functions:", color: "text-slate-400" },
         { text: "- calculateTotal(items: CartItem[], taxRate: number): number", color: "text-yellow-300" },
         { text: "- applyDiscount(total: number, discountCode: string): number", color: "text-yellow-300" },
         { text: "- formatCurrency(amount: number, currency: string): string", color: "text-yellow-300" },
@@ -51,7 +51,7 @@ export default function ProductPage() {
       cmd: "gentest generate --coverage=high",
       output: [
         { text: "✓ Generating tests with high coverage...", color: "text-purple-400" },
-        { text: "Creating test cases for:", color: "text-slate-300" },
+        { text: "Creating test cases for:", color: "text-slate-400" },
         { text: "- calculateTotal: 5 test cases", color: "text-yellow-300" },
         { text: "- applyDiscount: 4 test cases", color: "text-yellow-300" },
         { text: "- formatCurrency: 3 test cases", color: "text-yellow-300" },
@@ -63,9 +63,9 @@ export default function ProductPage() {
       output: [
         { text: "✓ Running tests...", color: "text-purple-400" },
         { text: "PASS tests/utils/calculator.test.ts", color: "text-green-400" },
-        { text: "Test Suites: 1 passed, 1 total", color: "text-slate-300" },
-        { text: "Tests: 12 passed, 12 total", color: "text-slate-300" },
-        { text: "Coverage: 94%", color: "text-slate-300" },
+        { text: "Test Suites: 1 passed, 1 total", color: "text-slate-400" },
+        { text: "Tests: 12 passed, 12 total", color: "text-slate-400" },
+        { text: "Coverage: 94%", color: "text-slate-400" },
         { text: "✓ Report generated at coverage/report.html", color: "text-purple-400" }
       ]
     }
@@ -139,7 +139,6 @@ export default function ProductPage() {
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-violet-500 to-teal-400 hover:from-violet-600 hover:to-teal-500 text-lg px-8 py-6 text-white shadow-xl hover:shadow-2xl transition-all duration-200 relative overflow-hidden group"
-                    aria-label="Join the waitlist"
                   >
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-violet-600/40 to-teal-500/40"
@@ -149,8 +148,8 @@ export default function ProductPage() {
                     />
                     <span className="relative">
                       Join Waitlist
-                      <ArrowRight className="ml-2 h-5 w-5 inline-block group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                    </span>
+                      <ArrowRight className="ml-2 h-5 w-5 inline-block group-hover:translate-x-1 transition-transform" />
+              </span>
                   </Button>
                 </Link>
               </motion.div>
@@ -178,7 +177,7 @@ export default function ProductPage() {
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 </div>
-                <div className="ml-4 text-sm text-slate-300">terminal</div>
+                <div className="ml-4 text-sm text-slate-400">terminal</div>
               </div>
               <div className="p-6 font-mono text-sm relative h-64 overflow-y-auto" style={{ minHeight: "256px" }}>
                 <AnimatePresence mode="wait">
@@ -364,7 +363,6 @@ export default function ProductPage() {
                     <Button 
                       size="lg" 
                       className="bg-gradient-to-r from-violet-500 to-teal-400 hover:from-violet-600 hover:to-teal-500 text-lg px-8 py-6 text-white shadow-xl hover:shadow-2xl transition-all duration-200 relative overflow-hidden group"
-                      aria-label="Join the waitlist"
                     >
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-violet-600/40 to-teal-500/40"
@@ -374,7 +372,7 @@ export default function ProductPage() {
                       />
                       <span className="relative">
                         Join Waitlist
-                        <ArrowRight className="ml-2 h-5 w-5 inline-block group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                        <ArrowRight className="ml-2 h-5 w-5 inline-block group-hover:translate-x-1 transition-transform" />
                       </span>
                     </Button>
                   </Link>

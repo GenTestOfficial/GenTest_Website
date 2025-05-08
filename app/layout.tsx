@@ -5,10 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { ClerkProvider } from '@clerk/nextjs'
 import { Footer } from "@/components/footer"
-import dynamic from 'next/dynamic'
-
-const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false })
-const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), { ssr: false })
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -81,8 +79,6 @@ export default function RootLayout({
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <link rel="preconnect" href="https://accounts.dev" />
           <link rel="preconnect" href="https://gentest.dev" />
-          <link rel="dns-prefetch" href="https://accounts.dev" />
-          <link rel="dns-prefetch" href="https://gentest.dev" />
         </head>
         <body className={inter.className}>
           <ThemeProvider

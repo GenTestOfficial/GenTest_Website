@@ -635,14 +635,14 @@ export default function PricingPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Link href="/try">
-                      <Button size="lg" className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 border-0 shadow-md text-white" aria-label="Try GenTest for free">
+                      <Button size="lg" className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 border-0 shadow-md text-white">
                         Try GenTest Free
                       </Button>
                     </Link>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Link href="/contact">
-                      <Button size="lg" variant="outline" className="border-slate-700" aria-label="Schedule a demo">
+                      <Button size="lg" variant="outline" className="border-slate-700">
                         Schedule Demo
                       </Button>
                     </Link>

@@ -318,10 +318,9 @@ ${formState.message}
                     type="submit"
                               className="w-full md:w-auto bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white"
                     disabled={isSubmitting}
-                    aria-label={isSubmitting ? "Sending message" : "Send message"}
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
-                    <Send className="ml-2 h-4 w-4" aria-hidden="true" />
+                    <Send className="ml-2 h-4 w-4" />
                   </Button>
                           </motion.div>
                         </motion.form>
@@ -447,10 +446,9 @@ ${formState.message}
                               type="submit"
                               className="w-full h-12 text-base bg-gradient-to-r from-violet-600 to-teal-600 hover:from-violet-700 hover:to-teal-700 text-white shadow-lg"
                               disabled={isSubmitting}
-                              aria-label={isSubmitting ? "Joining waitlist" : "Join waitlist"}
                             >
                               {isSubmitting ? "Joining..." : "Join Waitlist"}
-                              <Sparkles className="ml-2 h-5 w-5" aria-hidden="true" />
+                              <Sparkles className="ml-2 h-5 w-5" />
                             </Button>
                           </motion.div>
                         </motion.form>
@@ -571,10 +569,9 @@ ${formState.message}
                               type="submit"
                               className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white"
                               disabled={isSubmitting}
-                              aria-label={isSubmitting ? "Scheduling demo" : "Schedule demo"}
                             >
                               {isSubmitting ? "Scheduling..." : "Schedule Demo"}
-                              <Calendar className="ml-2 h-4 w-4" aria-hidden="true" />
+                              <Calendar className="ml-2 h-4 w-4" />
                             </Button>
                           </motion.div>
                         </motion.form>
