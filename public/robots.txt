@@ -1,18 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /private/
 
-# Allow search engines to execute JavaScript, CSS
-Allow: /*.js$
-Allow: /*.css$
-
-# Crawl delay
-Crawl-delay: 10
-
-# Host
-Host: https://gentest.com
-
-# Sitemaps
-Sitemap: https://gentest.com/sitemap.xml 
+Sitemap: https://gentest.dev/sitemap.xml 
