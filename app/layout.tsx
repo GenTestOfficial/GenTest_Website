@@ -21,6 +21,10 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
+  metadataBase: new URL('https://gentest.dev'),
+  alternates: {
+    canonical: '/',
+  },
   robots: {
     index: true,
     follow: true,
@@ -35,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://gentest.com',
+    url: 'https://gentest.dev',
     title: 'GenTest - AI-Powered Test Generation',
     description: 'Generate comprehensive test suites with AI. Save time and improve code coverage.',
     siteName: 'GenTest',
@@ -60,6 +64,7 @@ export default function RootLayout({
           <meta name="theme-color" content="#000000" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+          <link rel="canonical" href="https://gentest.dev" />
         </head>
         <body className={inter.className}>
           <ThemeProvider
